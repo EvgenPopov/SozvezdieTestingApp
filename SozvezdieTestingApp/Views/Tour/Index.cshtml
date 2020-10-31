@@ -1,0 +1,120 @@
+﻿@model TourInformation[]
+
+
+
+@for (int i = 0; i < Model.Length; i += 2)
+{
+
+    //if (Model[i].photoCard != null)
+    //{
+
+<div class="card-group">
+    <div class="card bg-light">
+        <h2>@Model[i].title</h2>
+        <div class="card">
+            @if (Model[i].photoCard == null)
+            {
+                <p>net izobrazhenia</p>
+            }
+            else
+            {
+                <img class="card-img-top" src=@Model[i].photoCard.thumbnail style="width:100%" alt="ХУУУУУУУУУУУУЙ" />
+            }
+            <div class="card-body">
+                <h4 class="card-title">@Model[i].header</h4>
+                <div>
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Описание тура</button>
+                    <div id="demo" class="collapse">
+                        @Model[i].description
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card bg-light">
+        <h2>@Model[i + 1].title</h2>
+        <div class="card">
+            @if (Model[i + 1].photoCard == null)
+            {
+                <p>net izobrazhenia</p>
+            }
+            else
+            {
+                <img class="card-img-top" src=@Model[i+1].photoCard.thumbnail style="width:100%" />
+            }
+            <div class="card-body">
+                <h4 class="card-title">@Model[i+1].header</h4>
+                <div>
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Описание тура</button>
+                    <div id="demo" class="collapse">
+                        @Model[i+1].description
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+    @*<table>
+            <tr>
+                <td>
+                    <div class="container">
+                        <h2>@Model[i].title</h2>
+                        <div class="card">
+                            @if (Model[i].photoCard == null)
+                            {
+                                <p>net izobrazhenia</p>
+                            }
+                            else
+                            {
+                                <img class="card-img-top" src=@Model[i].photoCard.thumbnail style="width:50%" />
+                            }
+                            <div class="card-body">
+                                <h4 class="card-title">@Model[i].header</h4>
+                                <p class="card-text">@Model[i].description</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="container">
+                        <h2>@Model[i + 1].title</h2>
+                        <div class="card">
+                            @if (Model[i + 1].photoCard == null)
+                            {
+                                <p>net izobrazhenia</p>
+                            }
+                            else
+                            {
+                                <img class="card-img-top" src=@Model[i+1].photoCard.thumbnail style="width:100%" />
+                            }
+                            <div class="card-body">
+                                <h4 class="card-title">@Model[i + 1].header</h4>
+                                <p class="card-text">@Model[i + 1].description</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+
+
+        </table>*@
+
+
+
+
+
+}
+
+
+@*}*@
