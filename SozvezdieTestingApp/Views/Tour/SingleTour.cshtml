@@ -1,2 +1,118 @@
 ﻿@model TourInformation
 
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+<style>
+    .img-wrap {
+        position: relative;
+    }
+
+        .img-wrap p {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+</style>
+ 
+
+</head>
+<body>
+
+    <div class="row">
+
+        <div class="col-xs-6">
+            <div class="card-group">
+                <div class="card bg-light">
+                   
+                    
+                    <div class="card">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="img-wrap">
+                                    @if (Model.photoCard == null)
+                                    {
+                                        <p>net izobrazhenia</p>
+                                    }
+                                    else
+                                    {
+                                        <img class="img-thumbnail" src=@Model.photoCard.thumbnail style="width:100%" alt="" />
+                                    }
+                                    <h1></h1>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body">
+                            <h4 class="card-title">@Model.header</h4>
+                            <div>
+                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Описание тура</button>
+                                <div id="demo" class="collapse">
+                                    @Model.description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6 col-sm-9">
+                                    Дата начала : @Model.periodStart.ToShortDateString()
+                                </div>
+                                <button type="button" class="btn btn-outline-info">Цена от @Model.minPrice рублей</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    @for (int i = 1; i < Model.photoAlbum.Count; i++)
+                    {
+
+                        <li data-target="#demo" data-slide-to="i"></li>
+                    }
+
+
+                </ul>
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <img src=@Model.photoAlbum[0].photo alt="Los " width="1100" height="500">
+                    </div>
+                    @for (int i = 1; i < Model.photoAlbum.Count; i++)
+                    {
+                        <div class="carousel-item">
+                            <img src=@Model.photoAlbum[i].photo alt="" width="1100" height="500">
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+
+
+

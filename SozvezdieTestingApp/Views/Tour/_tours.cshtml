@@ -2,53 +2,104 @@
 
 @for (int i = 0; i < Model.Length; i += 2)
 {
+
     <div class="card-group">
+
         <div class="card bg-light">
-            <h2>
-                <a></a>@Model[i].title
-            </h2>
             <div class="card">
-                @if (Model[i].photoCard == null)
-                {
-                    <p>net izobrazhenia</p>
-                }
-                else
-                {
-                    <img class="img-thumbnail" src=@Model[i].photoCard.thumbnail style="width:100%" alt="ХУУУУУУУУУУУУЙ" />
-                }
+                <a href="@Url.Action("SingleTour", "Tour", new {id = Model[i+1].id})">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="img-wrap">
+                                @if (Model[i].photoCard == null)
+                                {
+                                    <img class="img-thumbnail" src="https://cdn.sozvezdie-tour.ru/images/uploadedfiles/tn_f4382f51-b16c-4cec-8b46-889052391a61.jpg" style="width:100%" alt="" />
+                                }
+                                else
+                                {
+                                    <img class="img-thumbnail" src=@Model[i].photoCard.thumbnail style="width:100%" alt="" />
+                                }
+                                <h4>@Model[i].title</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
                 <div class="card-body">
-                    <h4 class="card-title">@Model[i].header</h4>
+
+
+                    <div class="col-sm scroll">
+                            <p>@Model[i].header</p>
+                    </div>
+
+
                     <div>
-                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Описание тура</button>
+                        <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo">Описание тура</button>
                         <div id="demo" class="collapse">
                             @Model[i].description
                         </div>
                     </div>
+                </div>
+                <div class="card-footer alert-light">
+                    <div class="row">
+                        <div class="col-6 col-sm-9">
+                            Дата начала : @Model[i].periodStart.ToShortDateString()
+                        </div>
+                        <button type="button" class="btn btn-secondary">от @Model[i].minPrice руб</button>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
 
 
 
+
         <div class="card bg-light">
-            <h2>@Model[i + 1].title</h2>
             <div class="card">
-                @if (Model[i + 1].photoCard == null)
-                {
-                    <p>net izobrazhenia</p>
-                }
-                else
-                {
-                    <img class="card-img-top" src=@Model[i + 1].photoCard.thumbnail style="width:100%" />
-                }
+                <a href="@Url.Action("SingleTour", "Tour", new {id = Model[i+1].id})">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="img-wrap">
+                                @if (Model[i + 1].photoCard == null)
+                                {
+                                    <img class="img-thumbnail" src="https://cdn.sozvezdie-tour.ru/images/uploadedfiles/tn_f4382f51-b16c-4cec-8b46-889052391a61.jpg" style="width:100%" alt="" />
+                                }
+                                else
+                                {
+                                    <img class="img-thumbnail" src=@Model[i+1].photoCard.thumbnail style="width:100%" alt="" />
+                                }
+                                <h4>@Model[i + 1].title</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
                 <div class="card-body">
-                    <h4 class="card-title">@Model[i + 1].header</h4>
                     <div>
-                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Описание тура</button>
+                        <div class="col-sm scroll">
+                            <p>@Model[i+1].header</p>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo">Описание тура</button>
                         <div id="demo" class="collapse">
                             @Model[i + 1].description
                         </div>
                     </div>
+                </div>
+                <div class="card-footer alert-light">
+                    <div class="row">
+                        <div class="col-6 col-sm-9">
+                            Дата начала : @Model[i + 1].periodStart.ToShortDateString()
+                        </div>
+                        <button type="button" class="btn btn-secondary">от @Model[i + 1].minPrice руб></button>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>

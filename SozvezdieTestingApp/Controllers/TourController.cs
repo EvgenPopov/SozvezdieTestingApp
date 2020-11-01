@@ -13,7 +13,7 @@ namespace SozvezdieTestingApp.Controllers
     {
         private readonly IDeserializeJson deserialize;
 
-        const int pagesize = 2;
+        const int pagesize = 4;
 
        
 
