@@ -25,12 +25,12 @@
                         </div>
                     </div>
                 </a>
-
+                
                 <div class="card-body">
 
 
                     <div class="col-sm scroll">
-                            <p>@Model[i].header</p>
+                        <p>@Model[i].header</p>
                     </div>
 
 
@@ -43,10 +43,15 @@
                 </div>
                 <div class="card-footer alert-light">
                     <div class="row">
-                        <div class="col-6 col-sm-9">
+                        <div class="col-6">
                             Дата начала : @Model[i].periodStart.ToShortDateString()
                         </div>
-                        <button type="button" class="btn btn-secondary">от @Model[i].minPrice руб</button>
+
+                        <div class="col-3">
+                            <text class="text-nowrap">Цена от @Model[i].minPrice рублей</text>
+                                
+                        </div>
+                        
 
                     </div>
 
@@ -95,7 +100,10 @@
                         <div class="col-6 col-sm-9">
                             Дата начала : @Model[i + 1].periodStart.ToShortDateString()
                         </div>
-                        <button type="button" class="btn btn-secondary">от @Model[i + 1].minPrice руб></button>
+                        <div class="col-3">
+                            <text class="text-nowrap">Цена от @Model[i+1].minPrice рублей</text>
+
+                        </div>
 
                     </div>
 

@@ -6,73 +6,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-<style>
-    .img-wrap {
-        position: relative;
-    }
-
-        .img-wrap p {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-        }
-</style>
- 
 
 </head>
 <body>
 
-    <div class="row">
 
-        <div class="col-xs-6">
-            <div class="card-group">
-                <div class="card bg-light">
-                   
-                    
-                    <div class="card">
 
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="img-wrap">
-                                    @if (Model.photoCard == null)
-                                    {
-                                        <p>net izobrazhenia</p>
-                                    }
-                                    else
-                                    {
-                                        <img class="img-thumbnail" src=@Model.photoCard.thumbnail style="width:100%" alt="" />
-                                    }
-                                    <h1></h1>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-body">
-                            <h4 class="card-title">@Model.header</h4>
-                            <div>
-                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Описание тура</button>
-                                <div id="demo" class="collapse">
-                                    @Model.description
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-6 col-sm-9">
-                                    Дата начала : @Model.periodStart.ToShortDateString()
-                                </div>
-                                <button type="button" class="btn btn-outline-info">Цена от @Model.minPrice рублей</button>
 
-                            </div>
 
-                        </div>
-                    </div>
+
+    <div class="card">
+        <div class="card-header">@Model.title</div>
+        <div class="card-body">
+            <img src=@Model.photoCard.thumbnail style="width:100%" />
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-6">
+                    Дата начала : @Model.periodStart.ToShortDateString()
                 </div>
+                <div class="col-3">
+                    <text class="text-nowrap">Цена от @Model.minPrice рублей</text>
+
+                </div>
+
             </div>
         </div>
+    </div>
 
-        <div class="col-xs-6">
+
+    <div class="card">
+
+        <div class="card-header">Маршрут</div>
+        <div class="card-body">
+
+            @foreach (var item in Model.route)
+            {
+                <div class="media border">
+                    <H4>↓</H4>
+                    <div class="media-body bg-light">
+                        <h4>@item</h4>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <h3>Описание тура</h3>
+            <h4>@Model.description</h4>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <footer>
+        
+        <div class="col-xl-12">
             <div id="demo" class="carousel slide" data-ride="carousel">
 
                 <ul class="carousel-indicators">
@@ -106,8 +100,7 @@
                 </a>
             </div>
         </div>
-
-    </div>
+    </footer>
 
 </body>
 </html>
