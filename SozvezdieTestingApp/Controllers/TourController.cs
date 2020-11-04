@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SozvezdieTestingApp.Models;
-using SozvezdieTestingApp.Models.Extensions;
+using SozvezdieTestingApp.Infostructure;
 
 namespace SozvezdieTestingApp.Controllers
 {
@@ -13,25 +11,16 @@ namespace SozvezdieTestingApp.Controllers
     {
         private readonly IDeserializeJson deserialize;
 
-        const int pagesize = 4;
-
-       
-
+        public int pagesize = 4;
 
         public TourController(IDeserializeJson deserialize)
         {
             this.deserialize = deserialize;
         }
 
-       
-
-
-
-        public IActionResult Index(int? id)
+        public IActionResult Catalog(int? id)
         {
             int page = id ?? 0;
-
-            
 
             if(Request.IsAjaxRequest())
             {
@@ -39,26 +28,18 @@ namespace SozvezdieTestingApp.Controllers
             }
             return View(GetItemsPage(page));
 
-            //return View(Tours);
-
         }
 
-        private TourInformation[] GetItemsPage(int page=1)
+        public TourInformationModel[] GetItemsPage(int page=1)
         {
-            var Tours = deserialize.GetInformation();
-
             var itemsToSkip = page * pagesize;
 
-            return Tours.OrderBy(t => t.id).Skip(itemsToSkip).Take(pagesize).ToArray();
+            return deserialize.TourInformation.OrderBy(t => t.id).Skip(itemsToSkip).Take(pagesize).ToArray();
         }
 
         public IActionResult SingleTour(int id)
         {
-            var Tour = deserialize.GetInformation().SingleOrDefault(tour => tour.id == id);
-
-            return View(Tour);
-
-
+            return View(deserialize.TourInformation.SingleOrDefault(tour => tour.id == id));
         }
 
      

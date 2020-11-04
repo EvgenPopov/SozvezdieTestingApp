@@ -1,105 +1,107 @@
-﻿@model TourInformation
+﻿@model TourInformationModel
 
 
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
 <head>
     <title></title>
-
 </head>
 <body>
-
-
-
-
-
-
     <div class="card">
         <div class="card-header">@Model.title</div>
         <div class="card-body">
-            <img src=@Model.photoCard.thumbnail style="width:100%" />
+            <div class="img-wrap">
+                @if (Model.photoCard == null)
+                {
+                    <img class="img-thumbnail" src="https://cdn.sozvezdie-tour.ru/images/uploadedfiles/tn_f4382f51-b16c-4cec-8b46-889052391a61.jpg" style="width:100%" alt="" />
+                }
+                else
+                {
+                    <img class="img-thumbnail" src=@Model.photoCard.photo style="width:100%" alt="" />
+                }
+
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        Дата начала : @Model.periodStart.ToShortDateString()
+                    </div>
+                    <div class="col-3">
+                        <text class="text-nowrap">Цена от @Model.minPrice рублей</text>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="card-footer">
-            <div class="row">
-                <div class="col-6">
-                    Дата начала : @Model.periodStart.ToShortDateString()
-                </div>
-                <div class="col-3">
-                    <text class="text-nowrap">Цена от @Model.minPrice рублей</text>
 
-                </div>
+        <div class="card">
 
+            <div class="card-header">Маршрут</div>
+            <div class="card-body">
+
+                @foreach (var item in Model.route)
+                {
+                    <div class="media border">
+                        <H4>●</H4>
+                        <div class="media-body bg-light">
+                            <h4>@item</h4>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-footer">
+                <h3>Описание тура</h3>
+                <h4>@Model.description</h4>
             </div>
         </div>
     </div>
-
-
-    <div class="card">
-
-        <div class="card-header">Маршрут</div>
-        <div class="card-body">
-
-            @foreach (var item in Model.route)
-            {
-                <div class="media border">
-                    <H4>↓</H4>
-                    <div class="media-body bg-light">
-                        <h4>@item</h4>
-                    </div>
-                </div>
-            }
-        </div>
-        <div class="card-footer">
-            <h3>Описание тура</h3>
-            <h4>@Model.description</h4>
-
-
-        </div>
-
-
-    </div>
-
-
-
-
 
     <footer>
-        
-        <div class="col-xl-12">
-            <div id="demo" class="carousel slide" data-ride="carousel">
 
-                <ul class="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" class="active"></li>
-                    @for (int i = 1; i < Model.photoAlbum.Count; i++)
-                    {
+        @if (Model.photoAlbum != null)
+        {
+            <div class="col-xl-12">
+                <div id="demo" class="carousel slide" data-ride="carousel">
 
-                        <li data-target="#demo" data-slide-to="i"></li>
-                    }
+                    <ul class="carousel-indicators">
+                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                        @for (int i = 1; i < Model.photoAlbum.Count; i++)
+                        {
 
+                            <li data-target="#demo" data-slide-to="i"></li>
+                        }
+                    </ul>
 
-                </ul>
+                    <div class="carousel-inner">
 
-                <div class="carousel-inner">
-
-                    <div class="carousel-item active">
-                        <img src=@Model.photoAlbum[0].photo alt="Los " width="1100" height="500">
-                    </div>
-                    @for (int i = 1; i < Model.photoAlbum.Count; i++)
-                    {
-                        <div class="carousel-item">
-                            <img src=@Model.photoAlbum[i].photo alt="" width="1100" height="500">
+                        <div class="carousel-item active">
+                            <img src=@Model.photoAlbum[0].photo alt="Los " width="1100" height="500">
                         </div>
-                    }
+                        @for (int i = 1; i < Model.photoAlbum.Count; i++)
+                        {
+                            <div class="carousel-item">
+                                <img src=@Model.photoAlbum[i].photo alt="" width="1100" height="500">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
             </div>
-        </div>
+        }
+        else
+        {
+            <div>
+                <img class="img-thumbnail" src=@Model.photoCard.photo style="width:100%" alt="" />
+            </div>
+
+        }
     </footer>
 
 </body>

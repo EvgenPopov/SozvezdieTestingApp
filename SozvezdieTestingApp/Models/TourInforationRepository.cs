@@ -10,15 +10,16 @@ namespace SozvezdieTestingApp.Models
 {
     public class TourInforationRepository : IDeserializeJson
     {
-        public TourInformation[] TourInfo { get; private set; }
 
 
+        public TourInformationModel[] TourInformation => GetInformation();
 
-        public TourInformation[] GetInformation()
+
+        public TourInformationModel[] GetInformation()
         {
-            string json = File.ReadAllText(@"C:\Users\Евгений\Downloads\demo_offers.json");
+            string json = File.ReadAllText(@"Files\demo_offers.json");
 
-            var pageInfo = JsonConvert.DeserializeObject<ICollection<TourInformation>>(json).ToArray();
+            var pageInfo = JsonConvert.DeserializeObject<ICollection<TourInformationModel>>(json).ToArray();
 
             return pageInfo;
         }

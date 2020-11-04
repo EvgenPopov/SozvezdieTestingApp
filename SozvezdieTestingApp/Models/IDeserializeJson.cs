@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SozvezdieTestingApp.Models
+﻿namespace SozvezdieTestingApp.Models
 {
     public interface IDeserializeJson
     {
-        public TourInformation[] GetInformation();
+
+        public TourInformationModel[] TourInformation { get; }
+
+       public TourInformationModel[] GetInformation();
 
 
     }
